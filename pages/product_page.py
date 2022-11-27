@@ -2,6 +2,7 @@ import math
 import time
 from .base_page import BasePage
 from .locators import MainPageLocators
+from .locators import ProductPageLocators
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,19 +10,23 @@ from selenium.common.exceptions import NoAlertPresentException # в начале
 
 class ProductPage(BasePage): 
     def add_to_cart(self):
-        link = self.browser.find_element(*MainPageLocators.CART_LINK)
+        link = self.browser.find_element(*ProductPageLocators.CART_LINK)
         link.click()
 
     def item_is_added_and_has_same_name(self):
-        #print(self.browser.find_element(*MainPageLocators.RESULT_BOOK_NAME).text)
-        #print(self.browser.find_element(*MainPageLocators.BOOK_NAME).text)
-        assert self.browser.find_element(*MainPageLocators.RESULT_BOOK_NAME).text == self.browser.find_element(*MainPageLocators.BOOK_NAME).text
+        assert self.browser.find_element(*ProductPageLocators.RESULT_BOOK_NAME).text == self.browser.find_element(*ProductPageLocators.BOOK_NAME).text
 
     def cart_price_is_same_as_item_price(self):
-        #print(self.browser.find_element(*MainPageLocators.BOOK_PRICE).text)
-        #print(self.browser.find_element(*MainPageLocators.CART_PRICE).text)
-        assert self.browser.find_element(*MainPageLocators.BOOK_PRICE).text == self.browser.find_element(*MainPageLocators.CART_PRICE).text
+        assert self.browser.find_element(*ProductPageLocators.BOOK_PRICE).text == self.browser.find_element(*ProductPageLocators.CART_PRICE).text
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+        "Success message is presented, but should not be"
+
+    def should_not_be_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+        "Success message is presented, but should not be"
+    
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
