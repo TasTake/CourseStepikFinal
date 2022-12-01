@@ -10,4 +10,4 @@ class ProductPageLocators():
     RESULT_BOOK_NAME = (By.XPATH, "(//div[contains(@class,'alertinner')])[1]//strong")
     CART_PRICE = (By.XPATH, "//div[contains(@class,'alertinner')]//p//strong")
     BOOK_PRICE = (By.XPATH, "//p[contains(@class,'price_color')]")
-    
+    SUCCESS_MESSAGE = (By.XPATH, "(//div[contains(@class,'alertinner')])[1]")
