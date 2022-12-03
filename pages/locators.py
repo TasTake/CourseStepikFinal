@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 class MainPageLocators():
-    LOGIN_LINK = (By.CSS_SELECTOR, "#registration_link")
+    LOGIN_LINKS = (By.CSS_SELECTOR, "#registration_link")
     
 
 class ProductPageLocators():
@@ -11,3 +11,7 @@ class ProductPageLocators():
     CART_PRICE = (By.XPATH, "//div[contains(@class,'alertinner')]//p//strong")
     BOOK_PRICE = (By.XPATH, "//p[contains(@class,'price_color')]")
     SUCCESS_MESSAGE = (By.XPATH, "(//div[contains(@class,'alertinner')])[1]")
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
