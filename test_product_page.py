@@ -1,6 +1,7 @@
 import time
 import pytest
 from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
 from asyncio.windows_events import NULL
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -28,7 +29,7 @@ def test_guest_can_add_product_to_basket(browser, link):
     time.sleep(0.5)
     page.cart_price_is_same_as_item_price()
     #use "pytest -v --tb=line --language=en test_main_page.py" to launch
-    """
+    
 @pytest.mark.xfail(reason="This should fail")
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
@@ -58,7 +59,16 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 def test_guest_can_go_to_login_page_from_product_page(browser):
-    link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
     page = ProductPage(browser, link)
     page.open()
     page.go_to_login_page()
+"""
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209"
+    page = BasketPage(browser, link)
+    page.open()
+    time.sleep(2)
+    page.go_to_cart()
+    page.cart_is_empty()
+    page.cart_empty_message_is_present()
