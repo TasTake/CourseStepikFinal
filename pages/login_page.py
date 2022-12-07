@@ -1,5 +1,6 @@
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
+from .locators import LoginPageLocators
 
 class LoginPage(BasePage):
     def should_be_login_page(self):
@@ -19,9 +20,10 @@ class LoginPage(BasePage):
         # реализуйте проверку, что есть форма регистрации на странице
         assert True
 
-class LoginPageLocators():
-    LOGIN_USERNAME = (By.CSS_SELECTOR, "#id_login-username")
-    LOGIN_PASSWORD = (By.CSS_SELECTOR, "#id_login-password")
-    REGISTRATION_USERNAME = (By.CSS_SELECTOR, "#id_registration-email")
-    REGISTRATION_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password1")
-    REGISTRATION_REPEAT_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password2")
+    def register_new_user(browser, email, password):
+        linkMail = browser.find_element(*LoginPageLocators.REGISTRATION_USERNAME)
+        linkMail.send_keys(email)
+        linkPass = browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD)
+        linkPass.send_keys(password)
+        linkPassR = browser.find_element(*LoginPageLocators.REGISTRATION_REPEAT_PASSWORD)
+        linkPassR.send_keys(password)
