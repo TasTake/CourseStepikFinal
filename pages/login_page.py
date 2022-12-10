@@ -1,3 +1,4 @@
+import random
 from .base_page import BasePage
 from selenium.webdriver.common.by import By
 from .locators import LoginPageLocators
@@ -20,10 +21,15 @@ class LoginPage(BasePage):
         # реализуйте проверку, что есть форма регистрации на странице
         assert True
 
-    def register_new_user(browser, email, password):
-        linkMail = browser.find_element(*LoginPageLocators.REGISTRATION_USERNAME)
+    def register_new_user(self):
+        randSeed = random.randint(100000,999999)
+        email = str(randSeed) + "@fakemail.kz"
+        password = randSeed * randSeed
+        linkMail = self.browser.find_element(*LoginPageLocators.REGISTRATION_USERNAME)
         linkMail.send_keys(email)
-        linkPass = browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD)
+        linkPass = self.browser.find_element(*LoginPageLocators.REGISTRATION_PASSWORD)
         linkPass.send_keys(password)
-        linkPassR = browser.find_element(*LoginPageLocators.REGISTRATION_REPEAT_PASSWORD)
+        linkPassR = self.browser.find_element(*LoginPageLocators.REGISTRATION_REPEAT_PASSWORD)
         linkPassR.send_keys(password)
+        regButton = self.browser.find_element(*LoginPageLocators.REGISTRATION_BUTTON)
+        regButton.click()

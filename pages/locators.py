@@ -13,6 +13,7 @@ class LoginPageLocators():
     REGISTRATION_USERNAME = (By.CSS_SELECTOR, "#id_registration-email")
     REGISTRATION_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password1")
     REGISTRATION_REPEAT_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password2")
+    REGISTRATION_BUTTON = (By.XPATH, "//button[@value='Register']")
 
 class ProductPageLocators():
     CART_LINK = (By.CSS_SELECTOR, ".btn.btn-lg.btn-primary.btn-add-to-basket")

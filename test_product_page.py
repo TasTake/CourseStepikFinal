@@ -61,25 +61,24 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
 """
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
-    def setup(self):
+    def setup(self, browser):
         link = "https://selenium1py.pythonanywhere.com/ru/accounts/login/" 
-        page = LoginPage(self.browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+        page = LoginPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
         page.open()
-        page.register_new_user("testmail", "testpassword")
+        page.register_new_user()
         page.should_be_authorized_user()
 
-    def test_user_cant_see_success_message(browser):
+    def test_user_cant_see_success_message(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/" 
         page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
         page.open()
         page.should_not_be_success_message() 
 
-    def test_user_can_add_product_to_basket(browser, link):
+    def test_user_can_add_product_to_basket(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/" 
         page = ProductPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
         page.open() 
         page.add_to_cart()
-        time.sleep(0.5)
-        page.solve_quiz_and_get_code()
         time.sleep(0.5)
         page.item_is_added_and_has_same_name()
         time.sleep(0.5)
