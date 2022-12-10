@@ -8,6 +8,8 @@ class BasketPageLocators():
     EMPTY_MESSAGE = (By.XPATH, "//div[@id='content_inner']//p[1]")
     
 class LoginPageLocators():
+    LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
+    REGISTRATION_FORM = (By.CSS_SELECTOR, "#register_form")
     LOGIN_USERNAME = (By.CSS_SELECTOR, "#id_login-username")
     LOGIN_PASSWORD = (By.CSS_SELECTOR, "#id_login-password")
     REGISTRATION_USERNAME = (By.CSS_SELECTOR, "#id_registration-email")
