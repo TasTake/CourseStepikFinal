@@ -1,13 +1,7 @@
 import math
-import time
 from .base_page import BasePage
-from .locators import MainPageLocators
 from .locators import ProductPageLocators
-from .locators import BasePageLocators
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoAlertPresentException # в начале файла
+from selenium.common.exceptions import NoAlertPresentException
 
 class ProductPage(BasePage): 
     def add_to_cart(self):
